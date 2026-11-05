@@ -1,0 +1,319 @@
+/* ==========================================================
+   LUMYRA | área pública | Unidade 5 - Tarefa 5
+   Mobile first: o CSS base vale para celular.
+   A media query no final adapta telas maiores.
+   ========================================================== */
+
+/* ---------- Passo 4 e 5: variáveis de cores e tipografia ---------- */
+:root {
+  /* esquema de cores */
+  --cor-principal: #b83e66;
+  --cor-principal-escura: #8f2a4d;
+  --cor-texto: #3a1f2e;
+  --cor-fundo: #fffafb;
+  --cor-superficie: #f9e9ee;
+  --cor-borda: #e6c5d0;
+  --cor-branco: #ffffff;
+
+  /* tipografia */
+  --fonte-titulo: "Playfair Display", Georgia, serif;
+  --fonte-texto: "Lato", Arial, sans-serif;
+  --tamanho-base: 1rem;
+  --tamanho-pequeno: 0.875rem;
+  --tamanho-h1: 1.75rem;
+  --tamanho-h2: 1.4rem;
+  --altura-linha: 1.6;
+
+  /* espaçamentos */
+  --espaco-p: 8px;
+  --espaco-m: 16px;
+  --espaco-g: 24px;
+
+  /* bordas */
+  --raio: 6px;
+  --borda: 1px solid var(--cor-borda);
+}
+
+/* ---------- Base ---------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--fonte-texto);
+  font-size: var(--tamanho-base);
+  line-height: var(--altura-linha);
+  color: var(--cor-texto);
+  background-color: var(--cor-fundo);
+}
+
+h1, h2, h3 {
+  font-family: var(--fonte-titulo);
+  line-height: 1.25;
+  margin: 0 0 var(--espaco-m);
+}
+
+h2 { font-size: var(--tamanho-h2); }
+
+p { margin: 0 0 var(--espaco-m); }
+
+a { color: var(--cor-principal-escura); }
+
+a:focus-visible,
+label:focus-visible {
+  outline: 3px solid var(--cor-principal);
+  outline-offset: 2px;
+}
+
+/* ---------- Passo 2 e 3: cabeçalho, conteúdo e rodapé ---------- */
+.cabecalho {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--espaco-m);
+  background-color: var(--cor-branco);
+  border-bottom: 2px solid var(--cor-principal);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-p);
+  text-decoration: none;
+  color: var(--cor-texto);
+}
+
+.logo img {
+  width: 44px;
+  height: 44px;
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: var(--tamanho-h1);
+  letter-spacing: 0.08em;
+}
+
+.conteudo {
+  padding: var(--espaco-g) var(--espaco-m);
+}
+
+.rodape {
+  padding: var(--espaco-g) var(--espaco-m);
+  margin-top: var(--espaco-g);
+  text-align: center;
+  font-size: var(--tamanho-pequeno);
+  color: var(--cor-branco);
+  background-color: var(--cor-principal-escura);
+}
+
+.rodape a { color: var(--cor-branco); }
+.rodape p { margin: 0; }
+
+/* ---------- Extras: menu abrir/fechar somente com CSS ---------- */
+/* 1) o checkbox existe só para guardar o estado (aberto/fechado) */
+#toggle-menu {
+  display: none;
+}
+
+/* 2) botões com ícones (Font Awesome) */
+.btn-abrir,
+.btn-fechar {
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--cor-principal-escura);
+  padding: var(--espaco-p) var(--espaco-m);
+  border: var(--borda);
+  border-radius: var(--raio);
+  background-color: var(--cor-superficie);
+}
+
+.btn-fechar {
+  display: inline-block;
+  margin: var(--espaco-p);
+}
+
+/* 3) estado inicial: menu e botão de fechar escondidos, botão de abrir visível */
+.menu {
+  display: none;
+  width: 100%;
+  margin-top: var(--espaco-m);
+  background-color: var(--cor-superficie);
+  border: var(--borda);
+  border-radius: var(--raio);
+}
+
+.menu a {
+  display: block;
+  padding: var(--espaco-m);
+  border-top: var(--borda);
+  text-decoration: none;
+  color: var(--cor-texto);
+}
+
+.menu a:hover,
+.menu a:focus-visible {
+  background-color: var(--cor-principal);
+  color: var(--cor-branco);
+}
+
+/* 4) checkbox marcado: mostra o menu (com o botão de fechar) e esconde o de abrir */
+#toggle-menu:checked ~ .menu {
+  display: block;
+}
+
+#toggle-menu:checked ~ .btn-abrir {
+  display: none;
+}
+
+/* ---------- Página inicial: coleção ---------- */
+.apresentacao {
+  padding: var(--espaco-g) var(--espaco-m);
+  background-color: var(--cor-superficie);
+  border-left: 6px solid var(--cor-principal);
+  border-radius: var(--raio);
+  margin-bottom: var(--espaco-g);
+}
+
+.apresentacao h2 { font-size: 1.6rem; }
+.apresentacao p { margin-bottom: 0; }
+
+.colecao {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--espaco-m);
+}
+
+.produto {
+  padding: var(--espaco-m);
+  background-color: var(--cor-branco);
+  border: var(--borda);
+  border-radius: var(--raio);
+}
+
+.produto h3 {
+  font-size: 1.1rem;
+  margin: var(--espaco-m) 0 var(--espaco-p);
+}
+
+.produto h3 a {
+  text-decoration: none;
+  color: var(--cor-texto);
+}
+
+.preco {
+  margin: 0 0 var(--espaco-m);
+  font-weight: 700;
+  color: var(--cor-principal-escura);
+}
+
+.botao {
+  display: inline-block;
+  padding: 10px var(--espaco-g);
+  color: var(--cor-branco);
+  background-color: var(--cor-principal);
+  border: 2px solid var(--cor-principal);
+  border-radius: var(--raio);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.botao:hover,
+.botao:focus-visible {
+  background-color: var(--cor-principal-escura);
+  border-color: var(--cor-principal-escura);
+}
+
+/* espaço reservado para a foto: troque por <img> quando tiver as imagens */
+.foto {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 3 / 4;
+  font-family: var(--fonte-titulo);
+  font-size: 2.5rem;
+  color: var(--cor-branco);
+  border-radius: var(--raio);
+  background-color: var(--cor-principal);
+}
+
+.foto.tom-2 { background-color: #8f2a4d; }
+.foto.tom-3 { background-color: #c98a9f; }
+.foto.tom-4 { background-color: #6b3a52; }
+
+/* ---------- Página de detalhes ---------- */
+.detalhes-produto .foto {
+  margin-bottom: var(--espaco-g);
+}
+
+.preco-grande {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--cor-principal-escura);
+  margin-bottom: var(--espaco-m);
+}
+
+.tabela-dados {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: var(--espaco-g);
+}
+
+.tabela-dados th,
+.tabela-dados td {
+  padding: var(--espaco-p) var(--espaco-m);
+  text-align: left;
+  border: var(--borda);
+}
+
+.tabela-dados th {
+  width: 40%;
+  background-color: var(--cor-superficie);
+}
+
+/* ---------- Página sobre o autor ---------- */
+.autor {
+  padding: var(--espaco-g);
+  background-color: var(--cor-branco);
+  border: var(--borda);
+  border-radius: var(--raio);
+}
+
+/* ---------- Telas maiores (tablet e desktop) ---------- */
+@media (min-width: 768px) {
+  .btn-abrir,
+  .btn-fechar {
+    display: none;
+  }
+
+  .menu,
+  #toggle-menu:checked ~ .menu {
+    display: flex;
+    width: auto;
+    margin-top: 0;
+    background: none;
+    border: none;
+  }
+
+  .menu a {
+    border-top: none;
+    border-radius: var(--raio);
+  }
+
+  .conteudo {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .colecao {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .detalhes-produto {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--espaco-g);
+  }
+}
